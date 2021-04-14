@@ -13,4 +13,8 @@ node_modules/
 
 # Собранные файлы (допишите самостоятельно)
 public/bundle.js
+<<<<<<< HEAD
 public/budle.js.map
+=======
+public/bundle.js.map
+>>>>>>> f4bbcec80c9ab8895d75884b9e387b1dcc8eeec8
