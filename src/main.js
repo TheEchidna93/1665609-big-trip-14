@@ -5,6 +5,7 @@ import {createTripSortTemplate} from './view/trip-sort.js';
 // import {createAddPointTemplate} from './view/add-point.js';
 import {createEditPointTemplate} from './view/edit-point.js';
 import {createTripEventTemplate} from './view/trip-event.js';
+import {generatePoint} from './mock/point.js';
 
 const render = (container, template, place) => {
   container.insertAdjacentHTML(place, template);
@@ -24,4 +25,12 @@ render(siteTripEventsElement, createTripSortTemplate(), 'beforeend');
 render(siteTripEventsList[0], createEditPointTemplate(), 'beforeend');
 for ( let i = 1; i < siteTripEventsList.length; i++ ) {
   render(siteTripEventsList[i], createTripEventTemplate(), 'beforeend');
-}
+};
+
+const mockPoints = [];
+
+for ( let i = 0; i < 20; i++ ) {
+  mockPoints.push( generatePoint( i ) );
+};
+
+console.log( mockPoints );
