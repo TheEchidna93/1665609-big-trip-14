@@ -30,40 +30,40 @@ const generateOffers = ( type ) => {
     case 'taxi':
       offer = [
         { title: 'Order Uber', price: 20 },
-        { title: 'Upgrade to a business class', price: 120 }
+        { title: 'Upgrade to a business class', price: 120 },
       ];
       break;
     case 'bus':
       offer = [
         { title: 'Choose meal', price: 180 },
-        { title: 'Upgrade to comfort class', price: 50 }
+        { title: 'Upgrade to comfort class', price: 50 },
       ];
       break;
     case 'flight':
       offer = [
         { title: 'Add luggage', price: 50 },
-        { title: 'Switch to comfort', price: 80 }
+        { title: 'Switch to comfort', price: 80 },
       ];
       break;
     case 'drive':
       offer = [
-        { title: 'Rent a car', price: 200 }
+        { title: 'Rent a car', price: 200 },
       ];
       break;
     case 'check-in':
       offer = [
-        { title: 'Add breakfast', price: 50 }
+        { title: 'Add breakfast', price: 50 },
       ];
       break;
     case 'sightseeing':
       offer = [
         { title: 'Book tickets', price: 40 },
-        { title: 'Lunch in city', price: 30 }
+        { title: 'Lunch in city', price: 30 },
       ];
       break;
     default:
       offer = [];
-  };
+  }
 
   return offer;
 };
@@ -72,7 +72,7 @@ const generateOffers = ( type ) => {
 const generateDescription = ( ) => {
   const str = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras aliquet varius magna, non porta ligula feugiat eget. Fusce tristique felis at fermentum pharetra. Aliquam id orci ut lectus varius viverra. Nullam nunc ex, convallis sed finibus eget, sollicitudin eget ante. Phasellus eros mauris, condimentum sed nibh vitae, sodales efficitur ipsum. Sed blandit, eros vel aliquam faucibus, purus ex euismod diam, eu luctus nunc ante ut dui. Sed sed nisi sed augue convallis suscipit in sed felis. Aliquam erat volutpat. Nunc fermentum tortor ac porta dapibus. In rutrum ac purus sit amet tempus.';
 
-  let sentences = str.split('.');
+  const sentences = str.split('.');
   let description = '';
 
   const num = getRandomInteger( 1, 5 );
@@ -82,25 +82,25 @@ const generateDescription = ( ) => {
       description += description.concat( '', sentences.splice(getRandomInteger(0, sentences.length - 1), 1)[0]);
     } else {
       description += description.concat( '. ', sentences.splice(getRandomInteger(0, sentences.length - 1), 1)[0]);
-    };
-  };
+    }
+  }
 
   return description;
 };
 
 const formatDate = (date) => {
-  let newDate = `${date.getFullYear()}-${date.getMonth() < 10 ? '0' + date.getMonth() : date.getMonth()}-${date.getDate() < 10 ? '0' + date.getDate() : date.getDate()}T${date.getHours() < 10 ? '0' + date.getHours() : date.getHours()}:${date.getMinutes() < 10 ? '0' + date.getMinutes() : date.getMinutes()}:${date.getSeconds() < 10 ? '0' + date.getSeconds() : date.getSeconds()}.${date.getMilliseconds()}Z`;
+  const newDate = `${date.getFullYear()}-${date.getMonth() < 10 ? '0' + date.getMonth() : date.getMonth()}-${date.getDate() < 10 ? '0' + date.getDate() : date.getDate()}T${date.getHours() < 10 ? '0' + date.getHours() : date.getHours()}:${date.getMinutes() < 10 ? '0' + date.getMinutes() : date.getMinutes()}:${date.getSeconds() < 10 ? '0' + date.getSeconds() : date.getSeconds()}.${date.getMilliseconds()}Z`;
 
   return newDate;
 };
 
 export const generatePoint = ( pointId ) => {
-  let pointType = generateType();
-  let hour = getRandomInteger(3, 9);
-  let minute = getRandomInteger(10, 20);
-  let duration = getRandomInteger(10, 30)
-  let dateFrom = new Date(2021, 5, pointId + 1, hour, minute, 0);
-  let dateTo = new Date(2021, 5, pointId + 1, hour, minute + duration, 0);
+  const pointType = generateType();
+  const hour = getRandomInteger(3, 9);
+  const minute = getRandomInteger(10, 20);
+  const duration = getRandomInteger(10, 30);
+  const dateFrom = new Date(2021, 5, pointId + 1, hour, minute, 0);
+  const dateTo = new Date(2021, 5, pointId + 1, hour, minute + duration, 0);
 
   return {
     base_price: getRandomInteger( 5, 15 ) * 100,
@@ -112,13 +112,13 @@ export const generatePoint = ( pointId ) => {
       pictures: [
         {
           src: `http://picsum.photos/248/152?r=${getRandomInteger(1, 100)}`,
-          desc: "Generic description"
-        }
-      ]
+          desc: 'Generic description',
+        },
+      ],
     },
     id: pointId,
     is_favorite: false,
     offers: generateOffers( pointType ),
-    type: pointType
+    type: pointType,
   };
 };

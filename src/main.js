@@ -12,9 +12,7 @@ const mockPoints = [];
 
 for ( let i = 0; i < 20; i++ ) {
   mockPoints.push( generatePoint( i ) );
-};
-
-console.log(mockPoints);
+}
 
 // Отрисовываем шаблоны
 const render = (container, template, place) => {
@@ -35,5 +33,5 @@ render(siteTripEventsElement, createTripSortTemplate(), 'beforeend');
 render(siteTripEventsList[0], createEditPointTemplate( mockPoints[0] ), 'beforeend');
 for ( let i = 1; i < mockPoints.length; i++ ) {
   render(siteTripEventsList[i], createTripEventTemplate( mockPoints[i] ), 'beforeend');
-};
+}
 

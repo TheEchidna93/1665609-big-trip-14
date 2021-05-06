@@ -1,4 +1,4 @@
-const capitalize = (str) => { return str[0].toUpperCase() + str.slice(1) };
+const capitalize = (str) => { return str[0].toUpperCase() + str.slice(1); };
 
 const formatDate = (date) => {
   return `${date.slice(8, 10)}/${date.slice(5, 7)}/${date.slice(0, 4)} ${date.slice(11, 16)}`;
@@ -17,7 +17,7 @@ const createOfferMarkup = (point) => {
       </label>
     </div>
     `;
-  };
+  }
 
   return markup;
 };

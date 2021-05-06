@@ -41,14 +41,14 @@ const formatDate = ( date ) => {
       break;
     default:
       newDate = 'MONTH';
-  };
+  }
   newDate = newDate + ` ${day}`;
 
   return newDate;
 };
 
 const createOfferMarkup = ( point ) => {
-  let markup = "";
+  let markup = '';
   for ( let i = 0; i < point.offers.length; i++ ) {
     markup += `
       <li class="event__offer">
@@ -57,12 +57,12 @@ const createOfferMarkup = ( point ) => {
         <span class="event__offer-price">${point.offers[i].price}</span>
       </li>
     `;
-  };
+  }
 
   return markup;
 };
 
-const capitalize = (str) => { return str[0].toUpperCase() + str.slice(1) };
+const capitalize = (str) => { return str[0].toUpperCase() + str.slice(1); };
 
 export const createTripEventTemplate = ( point ) => {
   return `
@@ -88,7 +88,7 @@ export const createTripEventTemplate = ( point ) => {
       <ul class="event__selected-offers">
         ${createOfferMarkup( point )}
       </ul>
-      ` : ""}
+      ` : ''}
       <button class="event__favorite-btn event__favorite-btn--active" type="button">
         <span class="visually-hidden">Add to favorite</span>
         <svg class="event__favorite-icon" width="28" height="28" viewBox="0 0 28 28">

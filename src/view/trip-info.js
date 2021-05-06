@@ -41,34 +41,34 @@ const formatDate = ( date ) => {
       break;
     default:
       newDate = 'MONTH';
-  };
+  }
   newDate = newDate + ` ${day}`;
 
   return newDate;
 };
 
 const getRoute = (points) => {
-  let route = [];
+  const route = [];
   let routeStr = '';
   route.push( points[0].destination.name );
 
-  points.forEach( point => {
+  points.forEach( (point) => {
     let hasDestination = false;
     for ( let i = 0; i < route.length; i++ ) {
       if ( point.destination.name === route[i] ) {
         hasDestination = true;
         break;
-      };
-    };
+      }
+    }
     if (!hasDestination) {
       route.push( point.destination.name );
-    };
+    }
   });
 
   routeStr += route[0];
   for ( let i = 1; i < route.length; i++ ) {
     routeStr += ` &mdash; ${route[i]}`;
-  };
+  }
 
   return routeStr;
 };
@@ -76,7 +76,7 @@ const getRoute = (points) => {
 const getCost = (points) => {
   let cost = 0;
 
-  points.forEach( point => {
+  points.forEach( (point) => {
     cost += point.base_price;
   });
 
