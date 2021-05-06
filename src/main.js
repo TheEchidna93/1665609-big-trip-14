@@ -22,15 +22,16 @@ render(siteTripControlsNavElement, createTripTabsTemplate(), 'beforeend');
 render(siteTripControlsFilterElement, createTripFiltersTemplate(), 'beforeend');
 render(siteTripEventsElement, createTripSortTemplate(), 'beforeend');
 
-render(siteTripEventsList[0], createEditPointTemplate(), 'beforeend');
-for ( let i = 1; i < siteTripEventsList.length; i++ ) {
-  render(siteTripEventsList[i], createTripEventTemplate(), 'beforeend');
-};
-
 const mockPoints = [];
 
 for ( let i = 0; i < 20; i++ ) {
   mockPoints.push( generatePoint( i ) );
 };
 
-console.log( mockPoints );
+console.log(mockPoints);
+
+render(siteTripEventsList[0], createEditPointTemplate( mockPoints[0] ), 'beforeend');
+for ( let i = 1; i < siteTripEventsList.length; i++ ) {
+  render(siteTripEventsList[i], createTripEventTemplate( mockPoints[i] ), 'beforeend');
+};
+
