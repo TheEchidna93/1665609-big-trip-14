@@ -96,11 +96,16 @@ const formatDate = (date) => {
 
 export const generatePoint = ( pointId ) => {
   let pointType = generateType();
+  let hour = getRandomInteger(3, 9);
+  let minute = getRandomInteger(10, 20);
+  let duration = getRandomInteger(10, 30)
+  let dateFrom = new Date(2021, 5, pointId + 1, hour, minute, 0);
+  let dateTo = new Date(2021, 5, pointId + 1, hour, minute + duration, 0);
 
   return {
     base_price: getRandomInteger( 5, 15 ) * 100,
-    date_from: formatDate(new Date()),
-    date_to: formatDate(new Date()),
+    date_from: formatDate(dateFrom),
+    date_to: formatDate(dateTo),
     destination: {
       description: generateDescription(),
       name: generateDestination(),

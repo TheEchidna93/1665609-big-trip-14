@@ -7,6 +7,16 @@ import {createEditPointTemplate} from './view/edit-point.js';
 import {createTripEventTemplate} from './view/trip-event.js';
 import {generatePoint} from './mock/point.js';
 
+// Генерируем моки
+const mockPoints = [];
+
+for ( let i = 0; i < 20; i++ ) {
+  mockPoints.push( generatePoint( i ) );
+};
+
+console.log(mockPoints);
+
+// Отрисовываем шаблоны
 const render = (container, template, place) => {
   container.insertAdjacentHTML(place, template);
 };
@@ -17,21 +27,13 @@ const siteTripControlsFilterElement = document.querySelector('.trip-controls__fi
 const siteTripEventsElement = document.querySelector('.trip-events');
 const siteTripEventsList = document.querySelectorAll('.trip-events__item');
 
-render(siteTripMainElement, createTripInfoTemplate(), 'afterbegin');
+render(siteTripMainElement, createTripInfoTemplate(mockPoints), 'afterbegin');
 render(siteTripControlsNavElement, createTripTabsTemplate(), 'beforeend');
 render(siteTripControlsFilterElement, createTripFiltersTemplate(), 'beforeend');
 render(siteTripEventsElement, createTripSortTemplate(), 'beforeend');
 
-const mockPoints = [];
-
-for ( let i = 0; i < 20; i++ ) {
-  mockPoints.push( generatePoint( i ) );
-};
-
-console.log(mockPoints);
-
 render(siteTripEventsList[0], createEditPointTemplate( mockPoints[0] ), 'beforeend');
-for ( let i = 1; i < siteTripEventsList.length; i++ ) {
+for ( let i = 1; i < mockPoints.length; i++ ) {
   render(siteTripEventsList[i], createTripEventTemplate( mockPoints[i] ), 'beforeend');
 };
 
