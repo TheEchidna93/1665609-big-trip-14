@@ -1,50 +1,62 @@
 const formatDate = ( date ) => {
   let newDate = '';
-  const month = date[5] + date[6];
-  const day = date[8] + date[9];
+  const month = date.getMonth();
+  const day = date.getDate();
   switch (month) {
-    case '01':
+    case 1:
       newDate = 'JAN';
       break;
-    case '02':
+    case 2:
       newDate = 'FEB';
       break;
-    case '03':
+    case 3:
       newDate = 'MAR';
       break;
-    case '04':
+    case 4:
       newDate = 'APR';
       break;
-    case '05':
+    case 5:
       newDate = 'MAY';
       break;
-    case '06':
+    case 6:
       newDate = 'JUN';
       break;
-    case '07':
+    case 7:
       newDate = 'JUL';
       break;
-    case '08':
+    case 8:
       newDate = 'AUG';
       break;
-    case '09':
+    case 9:
       newDate = 'SEP';
       break;
-    case '10':
+    case 10:
       newDate = 'OCT';
       break;
-    case '11':
+    case 11:
       newDate = 'NOV';
       break;
-    case '12':
+    case 12:
       newDate = 'DEC';
       break;
     default:
       newDate = 'MONTH';
   }
-  newDate = newDate + ` ${day}`;
+  newDate = newDate + ` ${day > 10 ? day : '0' + day}`;
 
   return newDate;
+};
+
+const getDateTime = ( date, time ) => {
+  if ( time ) {
+    return `${date.getFullYear()}-${date.getMonth() > 10 ? date.getMonth() : '0' + date.getMonth()}-${date.getDate() > 10 ? date.getDate() : '0' + date.getDate()}T${date.getHours() > 10 ? date.getHours() : '0' + date.getHours()}:${date.getMinutes() > 10 ? date.getMinutes() : '0' + date.getMinutes()}`;
+  } else {
+    return `${date.getFullYear()}-${date.getMonth() > 10 ? date.getMonth() : '0' + date.getMonth()}-${date.getDate() > 10 ? date.getDate() : '0' + date.getDate()}`;
+  }
+};
+
+const getTime = ( date ) => {
+  return `${date.getHours() > 10 ? date.getHours() : '0' + date.getHours()}:${date.getMinutes() > 10 ? date.getMinutes() : '0' + date.getMinutes()}`;
 };
 
 const createOfferMarkup = ( point ) => {
@@ -67,18 +79,18 @@ const capitalize = (str) => { return str[0].toUpperCase() + str.slice(1); };
 export const createTripEventTemplate = ( point ) => {
   return `
     <div class="event">
-      <time class="event__date" datetime="${point.date_from.slice(0, 16)}">${formatDate(point.date_from)}</time>
+      <time class="event__date" datetime="${getDateTime(point.date_from)}">${formatDate(point.date_from)}</time>
       <div class="event__type">
         <img class="event__type-icon" width="42" height="42" src="img/icons/${point.type}.png" alt="Event type icon">
       </div>
       <h3 class="event__title">${capitalize(point.type)} ${point.destination.name}</h3>
       <div class="event__schedule">
         <p class="event__time">
-          <time class="event__start-time" datetime="${point.date_from.slice(0, 16)}">${point.date_from.slice(11, 16)}</time>
+          <time class="event__start-time" datetime="${getDateTime(point.date_from, true)}">${getTime(point.date_from)}</time>
           &mdash;
-          <time class="event__end-time" datetime="${point.date_to.slice(0, 16)}">${point.date_to.slice(11, 16)}</time>
+          <time class="event__end-time" datetime="${getDateTime(point.date_to, true)}">${getTime(point.date_to)}</time>
         </p>
-        <p class="event__duration">${new Date(new Date(point.date_to) - new Date(point.date_from)).getMinutes()}</p>
+        <p class="event__duration">${new Date(point.date_to - point.date_from).getMinutes()}</p>
       </div>
       <p class="event__price">
         &euro;&nbsp;<span class="event__price-value">${point.base_price}</span>

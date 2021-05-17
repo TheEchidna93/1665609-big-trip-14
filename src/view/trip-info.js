@@ -1,48 +1,48 @@
 const formatDate = ( date ) => {
   let newDate = '';
-  const month = date[5] + date[6];
-  const day = date[8] + date[9];
+  const month = date.getMonth();
+  const day = date.getDate();
   switch (month) {
-    case '01':
+    case 1:
       newDate = 'JAN';
       break;
-    case '02':
+    case 2:
       newDate = 'FEB';
       break;
-    case '03':
+    case 3:
       newDate = 'MAR';
       break;
-    case '04':
+    case 4:
       newDate = 'APR';
       break;
-    case '05':
+    case 5:
       newDate = 'MAY';
       break;
-    case '06':
+    case 6:
       newDate = 'JUN';
       break;
-    case '07':
+    case 7:
       newDate = 'JUL';
       break;
-    case '08':
+    case 8:
       newDate = 'AUG';
       break;
-    case '09':
+    case 9:
       newDate = 'SEP';
       break;
-    case '10':
+    case 10:
       newDate = 'OCT';
       break;
-    case '11':
+    case 11:
       newDate = 'NOV';
       break;
-    case '12':
+    case 12:
       newDate = 'DEC';
       break;
     default:
       newDate = 'MONTH';
   }
-  newDate = newDate + ` ${day}`;
+  newDate = newDate + ` ${day > 10 ? day : '0' + day}`;
 
   return newDate;
 };

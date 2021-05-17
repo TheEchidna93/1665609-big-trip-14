@@ -1,7 +1,7 @@
 const capitalize = (str) => { return str[0].toUpperCase() + str.slice(1); };
 
 const formatDate = (date) => {
-  return `${date.slice(8, 10)}/${date.slice(5, 7)}/${date.slice(0, 4)} ${date.slice(11, 16)}`;
+  return `${date.getDate() > 10 ? date.getDate() : '0' + date.getDate()}/${date.getMonth() > 10 ? date.getMonth() : '0' + date.getMonth()}/${String(date.getFullYear()).substring(2, 4)} ${date.getHours() > 10 ? date.getHours() : '0' + date.getHours()}:${date.getMinutes() > 10 ? date.getMinutes() : '0' + date.getMinutes()}`;
 };
 
 const createOfferMarkup = (point) => {

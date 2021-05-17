@@ -88,12 +88,6 @@ const generateDescription = ( ) => {
   return description;
 };
 
-const formatDate = (date) => {
-  const newDate = `${date.getFullYear()}-${date.getMonth() < 10 ? '0' + date.getMonth() : date.getMonth()}-${date.getDate() < 10 ? '0' + date.getDate() : date.getDate()}T${date.getHours() < 10 ? '0' + date.getHours() : date.getHours()}:${date.getMinutes() < 10 ? '0' + date.getMinutes() : date.getMinutes()}:${date.getSeconds() < 10 ? '0' + date.getSeconds() : date.getSeconds()}.${date.getMilliseconds()}Z`;
-
-  return newDate;
-};
-
 export const generatePoint = ( pointId ) => {
   const pointType = generateType();
   const hour = getRandomInteger(3, 9);
@@ -104,8 +98,8 @@ export const generatePoint = ( pointId ) => {
 
   return {
     base_price: getRandomInteger( 5, 15 ) * 100,
-    date_from: formatDate(dateFrom),
-    date_to: formatDate(dateTo),
+    date_from: dateFrom,
+    date_to: dateTo,
     destination: {
       description: generateDescription(),
       name: generateDestination(),

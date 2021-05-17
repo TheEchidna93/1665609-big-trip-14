@@ -23,15 +23,19 @@ const siteTripMainElement = document.querySelector('.trip-main');
 const siteTripControlsNavElement = document.querySelector('.trip-controls__navigation');
 const siteTripControlsFilterElement = document.querySelector('.trip-controls__filters');
 const siteTripEventsElement = document.querySelector('.trip-events');
-const siteTripEventsList = document.querySelectorAll('.trip-events__item');
+const siteTripEventsListElement = document.querySelector('.trip-events__list');
 
 render(siteTripMainElement, createTripInfoTemplate(mockPoints), 'afterbegin');
 render(siteTripControlsNavElement, createTripTabsTemplate(), 'beforeend');
 render(siteTripControlsFilterElement, createTripFiltersTemplate(), 'beforeend');
 render(siteTripEventsElement, createTripSortTemplate(), 'beforeend');
 
-render(siteTripEventsList[0], createEditPointTemplate( mockPoints[0] ), 'beforeend');
+render(siteTripEventsListElement, createEditPointTemplate( mockPoints[0] ), 'beforeend');
+
+let tripEvent;
 for ( let i = 1; i < mockPoints.length; i++ ) {
-  render(siteTripEventsList[i], createTripEventTemplate( mockPoints[i] ), 'beforeend');
+  render(siteTripEventsListElement, '<li class="trip-events__item"></li>', 'beforeend');
+  tripEvent = document.querySelector('.trip-events__item:last-child');
+  render(tripEvent, createTripEventTemplate( mockPoints[i] ), 'beforeend');
 }
 
