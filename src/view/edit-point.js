@@ -1,7 +1,7 @@
-const capitalize = (str) => { return str[0].toUpperCase() + str.slice(1); };
+import {Utils} from '../utils.js';
 
 const formatDate = (date) => {
-  return `${date.getDate() > 10 ? date.getDate() : '0' + date.getDate()}/${date.getMonth() > 10 ? date.getMonth() : '0' + date.getMonth()}/${String(date.getFullYear()).substring(2, 4)} ${date.getHours() > 10 ? date.getHours() : '0' + date.getHours()}:${date.getMinutes() > 10 ? date.getMinutes() : '0' + date.getMinutes()}`;
+  return `${Utils.prefixByZero( date.getDate() )}/${Utils.prefixByZero( date.getMonth() )}/${String(date.getFullYear()).substring(2, 4)} ${Utils.getTime( date )}`;
 };
 
 const createOfferMarkup = (point) => {
@@ -92,7 +92,7 @@ export const createEditPointTemplate = ( point ) => {
 
       <div class="event__field-group  event__field-group--destination">
         <label class="event__label  event__type-output" for="event-destination-1">
-          ${capitalize(point.type)}
+          ${Utils.capitalize(point.type)}
         </label>
         <input class="event__input  event__input--destination" id="event-destination-1" type="text" name="event-destination" value="${point.destination.name}" list="destination-list-1">
         <datalist id="destination-list-1">

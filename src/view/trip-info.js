@@ -1,48 +1,13 @@
-const formatDate = ( date ) => {
+import {Utils} from '../utils.js';
+
+const formatDates = ( dateFrom, dateTo ) => {
   let newDate = '';
-  const month = date.getMonth();
-  const day = date.getDate();
-  switch (month) {
-    case 1:
-      newDate = 'JAN';
-      break;
-    case 2:
-      newDate = 'FEB';
-      break;
-    case 3:
-      newDate = 'MAR';
-      break;
-    case 4:
-      newDate = 'APR';
-      break;
-    case 5:
-      newDate = 'MAY';
-      break;
-    case 6:
-      newDate = 'JUN';
-      break;
-    case 7:
-      newDate = 'JUL';
-      break;
-    case 8:
-      newDate = 'AUG';
-      break;
-    case 9:
-      newDate = 'SEP';
-      break;
-    case 10:
-      newDate = 'OCT';
-      break;
-    case 11:
-      newDate = 'NOV';
-      break;
-    case 12:
-      newDate = 'DEC';
-      break;
-    default:
-      newDate = 'MONTH';
+
+  if ( dateFrom.getMonth() !== dateTo.getMonth() ) {
+    newDate = `${Utils.formatDate( dateFrom )}&nbsp;&mdash;&nbsp;${Utils.formatDate( dateTo )}`;
+  } else {
+    newDate = `${Utils.formatDate( dateFrom )}&nbsp;&mdash;&nbsp;${Utils.prefixByZero( dateTo.getDate() )}`;
   }
-  newDate = newDate + ` ${day > 10 ? day : '0' + day}`;
 
   return newDate;
 };
@@ -89,7 +54,7 @@ export const createTripInfoTemplate = (points) => {
     <div class="trip-info__main">
       <h1 class="trip-info__title">${getRoute(points)}</h1>
 
-      <p class="trip-info__dates">${formatDate(points[0].date_from)}&nbsp;&mdash;&nbsp;${formatDate(points[points.length-1].date_to).slice(0, 3) === formatDate(points[0].date_from).slice(0, 3) ? formatDate(points[points.length-1].date_to).slice(4, 6) : formatDate(points[points.length-1].date_to)}</p>
+      <p class="trip-info__dates">${formatDates(points[0].date_from, points[points.length-1].date_to)}</p>
     </div>
 
     <p class="trip-info__cost">

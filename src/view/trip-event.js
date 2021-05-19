@@ -1,51 +1,4 @@
-const formatDate = ( date ) => {
-  let newDate = '';
-  const month = date.getMonth();
-  const day = date.getDate();
-  switch (month) {
-    case 1:
-      newDate = 'JAN';
-      break;
-    case 2:
-      newDate = 'FEB';
-      break;
-    case 3:
-      newDate = 'MAR';
-      break;
-    case 4:
-      newDate = 'APR';
-      break;
-    case 5:
-      newDate = 'MAY';
-      break;
-    case 6:
-      newDate = 'JUN';
-      break;
-    case 7:
-      newDate = 'JUL';
-      break;
-    case 8:
-      newDate = 'AUG';
-      break;
-    case 9:
-      newDate = 'SEP';
-      break;
-    case 10:
-      newDate = 'OCT';
-      break;
-    case 11:
-      newDate = 'NOV';
-      break;
-    case 12:
-      newDate = 'DEC';
-      break;
-    default:
-      newDate = 'MONTH';
-  }
-  newDate = newDate + ` ${day > 10 ? day : '0' + day}`;
-
-  return newDate;
-};
+import {Utils} from '../utils.js';
 
 const getDateTime = ( date, time ) => {
   if ( time ) {
@@ -53,10 +6,6 @@ const getDateTime = ( date, time ) => {
   } else {
     return `${date.getFullYear()}-${date.getMonth() > 10 ? date.getMonth() : '0' + date.getMonth()}-${date.getDate() > 10 ? date.getDate() : '0' + date.getDate()}`;
   }
-};
-
-const getTime = ( date ) => {
-  return `${date.getHours() > 10 ? date.getHours() : '0' + date.getHours()}:${date.getMinutes() > 10 ? date.getMinutes() : '0' + date.getMinutes()}`;
 };
 
 const createOfferMarkup = ( point ) => {
@@ -74,21 +23,19 @@ const createOfferMarkup = ( point ) => {
   return markup;
 };
 
-const capitalize = (str) => { return str[0].toUpperCase() + str.slice(1); };
-
 export const createTripEventTemplate = ( point ) => {
   return `
     <div class="event">
-      <time class="event__date" datetime="${getDateTime(point.date_from)}">${formatDate(point.date_from)}</time>
+      <time class="event__date" datetime="${getDateTime(point.date_from)}">${Utils.formatDate(point.date_from)}</time>
       <div class="event__type">
         <img class="event__type-icon" width="42" height="42" src="img/icons/${point.type}.png" alt="Event type icon">
       </div>
-      <h3 class="event__title">${capitalize(point.type)} ${point.destination.name}</h3>
+      <h3 class="event__title">${Utils.capitalize(point.type)} ${point.destination.name}</h3>
       <div class="event__schedule">
         <p class="event__time">
-          <time class="event__start-time" datetime="${getDateTime(point.date_from, true)}">${getTime(point.date_from)}</time>
+          <time class="event__start-time" datetime="${getDateTime(point.date_from, true)}">${Utils.getTime(point.date_from)}</time>
           &mdash;
-          <time class="event__end-time" datetime="${getDateTime(point.date_to, true)}">${getTime(point.date_to)}</time>
+          <time class="event__end-time" datetime="${getDateTime(point.date_to, true)}">${Utils.getTime(point.date_to)}</time>
         </p>
         <p class="event__duration">${new Date(point.date_to - point.date_from).getMinutes()}</p>
       </div>

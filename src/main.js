@@ -5,6 +5,7 @@ import {createTripSortTemplate} from './view/trip-sort.js';
 // import {createAddPointTemplate} from './view/add-point.js';
 import {createEditPointTemplate} from './view/edit-point.js';
 import {createTripEventTemplate} from './view/trip-event.js';
+import {createListItem} from './view/list-item.js';
 import {generatePoint} from './mock/point.js';
 
 // Генерируем моки
@@ -30,11 +31,13 @@ render(siteTripControlsNavElement, createTripTabsTemplate(), 'beforeend');
 render(siteTripControlsFilterElement, createTripFiltersTemplate(), 'beforeend');
 render(siteTripEventsElement, createTripSortTemplate(), 'beforeend');
 
+let tripEvent;
+render(siteTripEventsListElement, createListItem(), 'beforeend');
+tripEvent = document.querySelector('.trip-events__item:last-child');
 render(siteTripEventsListElement, createEditPointTemplate( mockPoints[0] ), 'beforeend');
 
-let tripEvent;
 for ( let i = 1; i < mockPoints.length; i++ ) {
-  render(siteTripEventsListElement, '<li class="trip-events__item"></li>', 'beforeend');
+  render(siteTripEventsListElement, createListItem(), 'beforeend');
   tripEvent = document.querySelector('.trip-events__item:last-child');
   render(tripEvent, createTripEventTemplate( mockPoints[i] ), 'beforeend');
 }
